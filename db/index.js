@@ -16,7 +16,6 @@ const db = async () => {
 		console.log(error);
 	}
 };
-
 module.exports = {
 	db,
 };

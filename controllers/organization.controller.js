@@ -38,7 +38,6 @@ const GetOrganizationById = async (req, res, next) => {
 };
 
 const AddOrganization = async (req, res, next) => {
-	console.log('req.body: ', req.body);
 	try {
 		const {
 			org_name,
@@ -47,7 +46,6 @@ const AddOrganization = async (req, res, next) => {
 			org_city,
 			org_picture,
 		} = req.body;
-		console.log('org_name: ', org_name);
 
 		const existing_organization = await OrganizationService.FindOne({
 			org_name,
