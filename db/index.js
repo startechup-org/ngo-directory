@@ -1,19 +1,22 @@
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-dotenv.config()
+dotenv.config();
 
-const database_connection = process.env.MONGO_URI
-console.log('env: ', process.env.MONGO_URI)
+const database_connection = process.env.MONGO_URI;
 
 const db = async () => {
-    try {
-        mongoose.connect(database_connection, { useNewUrlParser: true, useUnifiedTopology: false, useFindAndModify: false })
-    } catch (error) {
-        console.log(error)
-    } 
-}
+	try {
+		mongoose.connect(database_connection, {
+			useNewUrlParser: true,
+			useUnifiedTopology: false,
+			useFindAndModify: false,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 module.exports = {
-    db
-}
+	db,
+};
