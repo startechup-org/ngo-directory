@@ -5,6 +5,7 @@ const { isAuthenticated } = require('../utils/middleware');
 
 const UserController = require('../controllers/user.controller');
 router.post('/user/login', UserController.Login);
+router.post('/user/logout', UserController.Logout);
 router.post('/user', UserController.Register);
 router.get(
 	'/user/token/:refresh_token',
