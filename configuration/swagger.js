@@ -79,6 +79,11 @@ const api = {
 									require: true,
 									example: 'user123@user.com',
 								},
+								password: {
+									type: 'string',
+									require: true,
+									example: 'pass123',
+								},
 								language: {
 									type: 'string',
 									require: true,
@@ -148,6 +153,16 @@ const api = {
 			tags: ['api'],
 			operationId: 'UpdateUser',
 			summary: 'update user details',
+			parameters: [
+				{
+					name: 'user_id',
+					in: 'path',
+					required: true,
+					schema: {
+						type: 'string',
+					},
+				},
+			],
 			requestBody: {
 				content: {
 					'application/json': {

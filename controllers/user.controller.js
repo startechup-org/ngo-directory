@@ -84,6 +84,7 @@ const Register = async (req, res, next) => {
 			language,
 			country,
 			userType,
+			organizations,
 		} = req.body;
 
 		const existing_user = await UserService.FindOne({
@@ -103,6 +104,7 @@ const Register = async (req, res, next) => {
 			language,
 			country,
 			userType,
+			organizations,
 		});
 
 		return res.status(200).json({
