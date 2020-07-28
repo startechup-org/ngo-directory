@@ -27,6 +27,18 @@ const FindOne = async (query) => {
 	}
 };
 
+const FindOneAndPopulate = async (query, populate_field) => {
+	try {
+		const organization = await Organization.findOne(query).populate(
+			populate_field
+		);
+		const admins = organization.admins;
+		return admins;
+	} catch (error) {
+		throw Error(error);
+	}
+};
+
 const FindOneAndUpdate = async (filter, data, options = {}) => {
 	try {
 		const organization = await Organization.findOneAndUpdate(
@@ -60,5 +72,6 @@ module.exports = {
 	Find,
 	FindOne,
 	FindOneAndUpdate,
+	FindOneAndPopulate,
 	DeleteOne,
 };

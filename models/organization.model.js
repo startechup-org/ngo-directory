@@ -6,6 +6,7 @@ const OrganizationSchema = new mongoose.Schema({
 	org_country: String,
 	org_city: String,
 	org_picture: String,
+	admins: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 	createdAt: {
 		type: Date,
 		default: Date.now,

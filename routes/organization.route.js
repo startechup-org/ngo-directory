@@ -18,5 +18,9 @@ router.delete(
 	'/organization/:organization_id',
 	OrganizationController.DeleteOrganization
 );
+router.get(
+	'/organization/:organization_id/admins',
+	OrganizationController.GetAdminsByOrganization
+);
 
 module.exports = router;

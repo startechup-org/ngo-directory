@@ -37,6 +37,23 @@ const GetOrganizationById = async (req, res, next) => {
 	}
 };
 
+const GetAdminsByOrganization = async (req, res, next) => {
+	const { organization_id } = req.params;
+	try {
+		const admins = await OrganizationService.FindOneAndPopulate(
+			{ _id: organization_id },
+			'admins'
+		);
+
+		return res.status(200).json({
+			message: 'Ok',
+			data: admins,
+		});
+	} catch (error) {
+		return next(new Error(error.message));
+	}
+};
+
 const AddOrganization = async (req, res, next) => {
 	try {
 		const {
@@ -145,4 +162,5 @@ module.exports = {
 	AddOrganization,
 	UpdateOrganization,
 	DeleteOrganization,
+	GetAdminsByOrganization,
 };

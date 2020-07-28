@@ -19,6 +19,23 @@ const GetAllUsersList = async (req, res, next) => {
 	}
 };
 
+const GetOrganizationsByUser = async (req, res, next) => {
+	const { user_id } = req.params;
+	try {
+		const organizations = await UserService.FindOneAndPopulate(
+			{ _id: user_id },
+			'organizations'
+		);
+
+		return res.status(200).json({
+			message: 'Ok',
+			data: organizations,
+		});
+	} catch (error) {
+		return next(new Error(error.message));
+	}
+};
+
 const GetUsersByType = async (req, res, next) => {
 	const { user_type } = req.params;
 	try {
@@ -108,6 +125,7 @@ const UpdateUser = async (req, res, next) => {
 			language,
 			country,
 			userType,
+			organizations,
 		} = req.body;
 
 		const user = await UserService.FindOne({
@@ -130,6 +148,7 @@ const UpdateUser = async (req, res, next) => {
 				language,
 				country,
 				userType,
+				organizations,
 			}
 		);
 
@@ -295,4 +314,5 @@ module.exports = {
 	DeleteUser,
 	Login,
 	Logout,
+	GetOrganizationsByUser,
 };
