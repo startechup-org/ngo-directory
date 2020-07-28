@@ -253,6 +253,36 @@ const api = {
 			],
 		},
 	},
+	'/user/{user_id}/organizations': {
+		get: {
+			tags: ['api'],
+			operationId: 'GetOrganizationsByUser',
+			summary: 'get all organization managed by user',
+			parameters: [
+				{
+					name: 'user_id',
+					in: 'path',
+					required: true,
+					schema: {
+						type: 'string',
+					},
+				},
+			],
+			responses: {
+				200: {
+					description: 'Ok',
+				},
+				400: {
+					description: 'Invalid token',
+				},
+			},
+			security: [
+				{
+					Bearer: [],
+				},
+			],
+		},
+	},
 	'/user/login': {
 		post: {
 			tags: ['api'],
@@ -290,24 +320,24 @@ const api = {
 			},
 		},
 	},
-	// '/user/logout': {
-	// 	post: {
-	// 		tags: ['api'],
-	// 		operationId: 'UserLogout',
-	// 		summary: 'user logout',
-	// 		parameters: [],
-	// 		responses: {
-	// 			200: {
-	// 				description: 'Ok',
-	// 			},
-	// 		},
-	// 		security: [
-	// 			{
-	// 				Bearer: [],
-	// 			},
-	// 		],
-	// 	},
-	// },
+	'/user/logout': {
+		post: {
+			tags: ['api'],
+			operationId: 'Logout',
+			summary: 'user logout',
+			parameters: [],
+			responses: {
+				200: {
+					description: 'Ok',
+				},
+			},
+			security: [
+				{
+					Bearer: [],
+				},
+			],
+		},
+	},
 	'/user/token/{refresh_token}': {
 		get: {
 			tags: ['api'],
@@ -389,6 +419,11 @@ const api = {
 									require: false,
 									example:
 										'https://en.facebookbrand.com/facebookapp/assets/f-logo/',
+								},
+								admins: {
+									type: 'array',
+									require: false,
+									example: ['5f1e4d348017c285c9a4bcdb'],
 								},
 							},
 						},
@@ -476,6 +511,11 @@ const api = {
 									example:
 										'https://en.facebookbrand.com/facebookapp/assets/f-logo/',
 								},
+								admins: {
+									type: 'array',
+									require: false,
+									example: ['5f1e4d348017c285c9a4bcdb'],
+								},
 							},
 						},
 					},
@@ -512,6 +552,36 @@ const api = {
 			responses: {
 				200: {
 					description: 'Organization deleted',
+				},
+			},
+			security: [
+				{
+					Bearer: [],
+				},
+			],
+		},
+	},
+	'/organization/{organization_id}/admins': {
+		get: {
+			tags: ['api'],
+			operationId: 'GetAdminsByOrganization',
+			summary: 'get all admins per organization',
+			parameters: [
+				{
+					name: 'organization_id',
+					in: 'path',
+					required: true,
+					schema: {
+						type: 'string',
+					},
+				},
+			],
+			responses: {
+				200: {
+					description: 'Ok',
+				},
+				400: {
+					description: 'Invalid token',
 				},
 			},
 			security: [

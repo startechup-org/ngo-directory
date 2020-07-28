@@ -62,6 +62,7 @@ const AddOrganization = async (req, res, next) => {
 			org_country,
 			org_city,
 			org_picture,
+			admins,
 		} = req.body;
 
 		const existing_organization = await OrganizationService.FindOne({
@@ -79,6 +80,7 @@ const AddOrganization = async (req, res, next) => {
 			org_country,
 			org_city,
 			org_picture,
+			admins,
 		});
 
 		return res.status(200).json({
@@ -99,6 +101,7 @@ const UpdateOrganization = async (req, res, next) => {
 			org_country,
 			org_city,
 			org_picture,
+			admins,
 		} = req.body;
 
 		const organization = await OrganizationService.FindOne({
@@ -119,12 +122,13 @@ const UpdateOrganization = async (req, res, next) => {
 				org_country,
 				org_city,
 				org_picture,
+				admins,
 			}
 		);
 
 		return res.status(200).json({
 			message: 'Ok',
-			data: 'Program Updated',
+			data: 'Organization Updated',
 		});
 	} catch (error) {
 		return next(new Error(error.message));
