@@ -74,16 +74,22 @@ This app uses MongoDB Atlas, which is a fully-managed cloud database. In case of
 - Sign up for an account in MongoDB: https://account.mongodb.com/account/register
 - Select **Shared Clusters** which is the Free plan, then click **Create a cluster**
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596030548/atlas-1_vayl5w.png">
+
 - Set the **Cloud Provider** and **Region**. In the example, AWS is chosen and on Singapore region (since its close to Philippines). Please select the region close to your country. The other default settings are initially chosen for the Free plan. Click **Create Cluster** afterwards.
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596030594/atlas-2_real_f9mslk.png">
+
 - Wait while your cluster is being provisioned. This may take a while.
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596030672/atlas-3_ozwdjy.png">
+
 - After your cluster is provisioned, click on **Collections**
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032007/atlas4_lusvuj.png">
+
 - Next, click **Add My Own Data**
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032092/atlas5_fbhhsw.png">
+
 - Create your database and your collection.
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032205/atlas6_xzpuyw.png">
+
 - The Atlas Database Dashboard (under the collections tab) will be shown
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032259/atlas7_zrfd82.png">
 
@@ -91,6 +97,27 @@ This app uses MongoDB Atlas, which is a fully-managed cloud database. In case of
 - In this part, we should connect to our Atlas Database, navigate again to your cluster dashboard and click on **Connect**
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032007/atlas4_lusvuj.png">
 
+- In **Connect to Cluster**, select **Allow Access from Anywhere**
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032976/atlas8_gfs0vk.png">
+
+- Add a whitelist api and create the database user
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596033131/atlas8-real2_ckxyww.png">
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596033276/atlas-9_ixlnjz.png">
+
+- After this, **Choose a connection method** and select **Connect your application**
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596033318/atlas10_pw2vdo.png">
+
+- Copy the connection string. Remember to replace the '<password>' with your database user password and '<dbname>' with the database that will be used.
+```
+mongodb+srv://admin:<password>@cluster0.soffw.mongodb.net/<dbname>
+```
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596033370/atlas11_zbykgy.png">
+
+- Open .env file from the source code and replace the 'MONGO_URI' value with your connection string.
+```
+MONGO_URI=<your mongodb atlas connection string here>
+```
+- Test if you can connect and insert data into your new cloud database instance.
 
 ## Relationship
 Many to Many
