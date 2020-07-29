@@ -25,16 +25,17 @@ In this app:
 **Must have the following installed in your respective development machine (i.e. Linux, Mac, Windows)**
 
 - NodeJS and NPM
-- Visual Studio Code (as code editor)
+- Visual Studio Code
 - Postman
 - Robo3t
 
-Downloads Link
+**Downloads Link**
 
 - NodeJS and NPM: https://nodejs.org/en/download/
-<a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04"> Linux </a>
-<a href="https://www.guru99.com/download-install-node-js.html"> Windows </a>
-<a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-and-create-a-local-development-environment-on-macos"> Mac </a>
+
+> <a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04"> Linux </a>
+> <a href="https://www.guru99.com/download-install-node-js.html"> Windows </a>
+> <a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-and-create-a-local-development-environment-on-macos"> Mac </a>
 
 - Visual Studio Code (as code editor): https://code.visualstudio.com/download
 - Postman (as API tool): https://www.postman.com/downloads/
