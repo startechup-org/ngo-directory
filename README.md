@@ -65,6 +65,37 @@ npm start
 
 Check if the server is running at: `localhost:3000`
 
+## Using your own cloud hosted database 
+**MongoDB Atlas Setup**
+
+This app uses MongoDB Atlas, which is a fully-managed cloud database. In case of wanting to use your own database instance with MongoDB Atlas to store your data, please follow the instructions below:
+
+**Account Creation and Cluster Setup**
+- Sign up for an account in MongoDB: https://account.mongodb.com/account/register
+- Select **Shared Clusters** which is the Free plan, then click **Create a cluster**
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596030548/atlas-1_vayl5w.png">
+- Set the **Cloud Provider** and **Region**. In the example, AWS is chosen and on Singapore region (since its close to Philippines). Please select the region close to your country. The other default settings are initially chosen for the Free plan. Click **Create Cluster** afterwards.
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596030594/atlas-2_real_f9mslk.png">
+- Wait while your cluster is being provisioned. This may take a while.
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596030672/atlas-3_ozwdjy.png">
+- After your cluster is provisioned, click on **Collections**
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032007/atlas4_lusvuj.png">
+- Next, click **Add My Own Data**
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032092/atlas5_fbhhsw.png">
+- Create your database and your collection.
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032205/atlas6_xzpuyw.png">
+- The Atlas Database Dashboard (under the collections tab) will be shown
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032259/atlas7_zrfd82.png">
+
+**Retrieving the Database Connection String**
+- In this part, we should connect to our Atlas Database, navigate again to your cluster dashboard and click on **Connect**
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032007/atlas4_lusvuj.png">
+
+
+## Relationship
+Many to Many
+- a user can be an admin of multiple organizations
+- an organization can have multiple admins
 
 ## API Reference
 Please refer to the <a href="http://34.87.81.98:3000/api-docs/"> live swagger UI. </a>
@@ -77,6 +108,7 @@ Please refer to the <a href="http://34.87.81.98:3000/api-docs/"> live swagger UI
 Many to Many
 - a user can be an admin of multiple organizations
 - an organization can have multiple admins
+
 
 ## License
 MIT © [Startechup, Inc.]()
