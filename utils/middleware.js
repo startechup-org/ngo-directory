@@ -14,7 +14,6 @@ const cors = async (req, res, next) => {
 };
 
 const isAuthenticated = async (req, res, next) => {
-	console.log('isAuthenticated');
 	const authorization =
 		req.headers['x-access-token'] || req.headers.authorization;
 

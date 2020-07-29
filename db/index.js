@@ -5,7 +5,7 @@ dotenv.config();
 
 const database_connection = process.env.MONGO_URI;
 
-const db = async () => {
+const db = () => {
 	try {
 		mongoose.connect(database_connection, {
 			useNewUrlParser: true,
