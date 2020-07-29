@@ -107,13 +107,13 @@ This app uses MongoDB Atlas, which is a fully-managed cloud database. In case of
 - After this, **Choose a connection method** and select **Connect your application**
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596033318/atlas10_pw2vdo.png">
 
-- Copy the connection string. Remember to replace the '<password>' with your database user password and '<dbname>' with the database that will be used.
+- Copy the connection string. Remember to replace the `<password>` with your database user password and `<dbname>` with the database that will be used.
 ```
 mongodb+srv://admin:<password>@cluster0.soffw.mongodb.net/<dbname>
 ```
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596033370/atlas11_zbykgy.png">
 
-- Open .env file from the source code and replace the 'MONGO_URI' value with your connection string.
+- Open `.env` file from the source code and replace the `MONGO_URI` value with your connection string.
 ```
 MONGO_URI=<your mongodb atlas connection string here>
 ```
