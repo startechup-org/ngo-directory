@@ -5,33 +5,31 @@ const { cors } = require('./utils/middleware');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./configuration/swagger');
 
-async function server_init() {
-	await db();
+const app = express();
+db();
+app.use(cors);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({}));
 
-	const app = express();
-	app.use(cors);
-	app.use(bodyParser.urlencoded({ extended: true }));
-	app.use(bodyParser.json({}));
+app.get('/', async (req, res) => {
+	res.send('NGO Directory App');
+});
 
-	/** swagger route */
-	app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-	/** server check */
-	app.get('/', (req, res) => {
-		res.send('NGO Directory Server is alive');
-	});
+/** swagger route */
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-	/*routes*/
-	const organization = require('./routes/organization.route');
-	const user = require('./routes/user.route');
-	// const user_organization = require('./routes/user_organization.route');
-	/*routes*/
-	app.use(organization);
-	// app.use(user_organization);
-	app.use(user);
+/** server check */
+app.get('/', (req, res) => {
+	res.send('NGO Directory Server is alive');
+});
+/*routes*/
+const organization = require('./routes/organization.route');
+const user = require('./routes/user.route');
 
-	app.listen({ port: process.env.PORT || 3000 }, () => {
-		console.log('Server running at: ', process.env.PORT || 3000);
-	});
-}
+/*routes*/
+app.use(organization);
+app.use(user);
 
-server_init();
+app.listen({ port: process.env.PORT || 3000 }, () => {
+	console.log('Server running at: ', process.env.PORT || 3000);
+});

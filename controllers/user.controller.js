@@ -227,13 +227,13 @@ const Login = async (req, res, next) => {
 		const access_token = jwt.sign(user.toJSON(), process.env.SECRET_TOKEN, {
 			expiresIn: '24h',
 		});
-		console.log('access_token: ', access_token);
+		
 		const refresh_token = jwt.sign(
 			user.toJSON(),
 			process.env.REFRESH_SECRET_TOKEN,
 			{ expiresIn: process.env.REFRESH_SECRET_TOKEN_EXPIRED_IN }
 		);
-		console.log('access_token: ', access_token);
+		
 
 		await TokenService.Create({ refresh_token, access_token });
 		// logger.info(`${req.method} ${req.originalUrl} ${200}`);
