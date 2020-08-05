@@ -1,15 +1,18 @@
 /* eslint-disable camelcase */
 const express = require('express');
 const router = express.Router();
+const { isAuthenticated } = require('../utils/middleware');
 
 const OrganizationController = require('../controllers/organization.controller');
 
+router.post('/organization', OrganizationController.AddOrganization);
+router.use(isAuthenticated);
 router.get('/organizations', OrganizationController.GetOrganizationList);
 router.get(
 	'/organization/:organization_id',
 	OrganizationController.GetOrganizationById
 );
-router.post('/organization', OrganizationController.AddOrganization);
+
 router.put(
 	'/organization/:organization_id',
 	OrganizationController.UpdateOrganization

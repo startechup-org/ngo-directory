@@ -15,6 +15,10 @@ async function server_init() {
 
 	/** swagger route */
 	app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+	/** server check */
+	app.get('/', (req, res) => {
+		res.send('NGO Directory Server is alive');
+	});
 
 	/*routes*/
 	const organization = require('./routes/organization.route');
