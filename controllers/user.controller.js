@@ -190,7 +190,7 @@ const DeleteUser = async (req, res, next) => {
 
 const Login = async (req, res, next) => {
 	try {
-		// const { email, password } = req.body;
+		const { email, password } = req.body;
 
 		// try {
 		// 	const schema = Joi.object({
@@ -209,7 +209,7 @@ const Login = async (req, res, next) => {
 		// 	//return next(new ExtendedError('BAD_USER_INPUT', 400, error.message))
 		// }
 
-		// const user = await UserService.FindOne({ email });
+		const user = await UserService.FindOne({ email });
 		// if (!user) {
 		// 	return res.status(400).json({
 		// 		message: 'Invalid email/password',
