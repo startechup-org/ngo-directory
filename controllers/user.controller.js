@@ -190,39 +190,39 @@ const DeleteUser = async (req, res, next) => {
 
 const Login = async (req, res, next) => {
 	try {
-		const { email, password } = req.body;
+		// const { email, password } = req.body;
 
-		try {
-			const schema = Joi.object({
-				email: Joi.string().email().required(),
-				password: Joi.string().required(),
-			});
-			const input = {
-				email,
-				password,
-			};
-			await schema.validateAsync(input);
-		} catch (error) {
-			return res.status(400).json({
-				message: 'Bad user input: ' + error.message,
-			});
-			//return next(new ExtendedError('BAD_USER_INPUT', 400, error.message))
-		}
+		// try {
+		// 	const schema = Joi.object({
+		// 		email: Joi.string().email().required(),
+		// 		password: Joi.string().required(),
+		// 	});
+		// 	const input = {
+		// 		email,
+		// 		password,
+		// 	};
+		// 	await schema.validateAsync(input);
+		// } catch (error) {
+		// 	return res.status(400).json({
+		// 		message: 'Bad user input: ' + error.message,
+		// 	});
+		// 	//return next(new ExtendedError('BAD_USER_INPUT', 400, error.message))
+		// }
 
-		const user = await UserService.FindOne({ email });
-		if (!user) {
-			return res.status(400).json({
-				message: 'Invalid email/password',
-			});
-		}
+		// const user = await UserService.FindOne({ email });
+		// if (!user) {
+		// 	return res.status(400).json({
+		// 		message: 'Invalid email/password',
+		// 	});
+		// }
 
-		const valid =
-			user.password && (await bcrypt.compare(password, user.password));
+		// const valid =
+		// 	user.password && (await bcrypt.compare(password, user.password));
 
-		if (!valid)
-			return res.status(400).json({
-				message: 'Invalid email/password',
-			});
+		// if (!valid)
+		// 	return res.status(400).json({
+		// 		message: 'Invalid email/password',
+		// 	});
 
 		const access_token = jwt.sign(user.toJSON(), process.env.SECRET_TOKEN, {
 			expiresIn: '24h',
