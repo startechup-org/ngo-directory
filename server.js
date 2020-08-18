@@ -11,9 +11,15 @@ app.use(cors);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({}));
 
+// app.get('/', async (req, res) => {
+// 	res.send('NGO Directory App');
+// });
+
 app.get('/', async (req, res) => {
-	res.send('NGO Directory App');
+	res.render('login.ejs', {name: 'Cleo'});
 });
+
+app.set('view-engine', 'ejs')
 
 /** swagger route */
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
