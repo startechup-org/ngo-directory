@@ -195,7 +195,6 @@ const Test = async (req, res, next) => {
 const Login = async (req, res, next) => {
 	console.log('testing')
 	try {
-	
 		// const { email, password } = req.body;
 
 		// try {
@@ -230,9 +229,9 @@ const Login = async (req, res, next) => {
 		// 		message: 'Invalid email/password',
 		// 	});
 
-		// const access_token = jwt.sign(user.toJSON(), process.env.SECRET_TOKEN, {
-		// 	expiresIn: '24h',
-		// });
+		const access_token = jwt.sign(user.toJSON(), process.env.SECRET_TOKEN, {
+			expiresIn: '24h',
+		});
 		
 		// const refresh_token = jwt.sign(
 		// 	user.toJSON(),
