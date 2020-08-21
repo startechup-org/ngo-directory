@@ -30,15 +30,12 @@ const isAuthenticated = async (req, res, next) => {
 			return res.status(400).json({
 				message: 'Invalid Token',
 			});
-			// return next(new ExtendedError('InvalidToken', 400, 'Invalid token'));
 		}
 	}
 	return res.status(500).json({
 		message: 'Auth token is not supplied',
 	});
-	// return next(
-	// 	new ExtendedError('UnAuthenticatedError', 401, 'Auth token is not supplied')
-	// );
+
 };
 
 module.exports = {
