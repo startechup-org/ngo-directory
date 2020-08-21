@@ -21,7 +21,7 @@ const GetOrganizationById = async (req, res, next) => {
 		const organization = await OrganizationService.FindOne({
 			_id: organization_id,
 		});
-		console.log('organization: ', organization);
+	
 		if (!organization) {
 			return res.status(404).json({
 				message: 'Data Not Found',
@@ -107,7 +107,7 @@ const UpdateOrganization = async (req, res, next) => {
 		const organization = await OrganizationService.FindOne({
 			_id: organization_id,
 		});
-		console.log('organization: ', organization);
+	
 		if (!organization) {
 			return res.status(404).json({
 				message: 'Data Not Found',
@@ -142,7 +142,7 @@ const DeleteOrganization = async (req, res, next) => {
 		const organization = await OrganizationService.FindOne({
 			_id: organization_id,
 		});
-		console.log('organization: ', organization);
+		
 		if (!organization) {
 			return res.status(404).json({
 				message: 'Data Not Found',

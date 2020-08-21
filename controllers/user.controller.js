@@ -58,7 +58,7 @@ const GetUserById = async (req, res, next) => {
 		const user = await UserService.FindOne({
 			_id: user_id,
 		});
-		console.log('user: ', user);
+	
 		if (!user) {
 			return res.status(404).json({
 				message: 'User Not Found',
@@ -133,7 +133,7 @@ const UpdateUser = async (req, res, next) => {
 		const user = await UserService.FindOne({
 			_id: user_id,
 		});
-		console.log('user: ', user);
+	
 		if (!user) {
 			return res.status(404).json({
 				message: 'User Not Found',
@@ -170,7 +170,7 @@ const DeleteUser = async (req, res, next) => {
 		const user = await UserService.FindOne({
 			_id: user_id,
 		});
-		console.log('user: ', user);
+	
 		if (!user) {
 			return res.status(404).json({
 				message: 'User Not Found',
@@ -188,7 +188,12 @@ const DeleteUser = async (req, res, next) => {
 	}
 };
 
+const Test = async (req, res, next) => {
+	console.log('testing1111')
+}
+
 const Login = async (req, res, next) => {
+	console.log('testing')
 	try {
 		const { email, password } = req.body;
 
@@ -228,16 +233,16 @@ const Login = async (req, res, next) => {
 			expiresIn: '24h',
 		});
 		
-		const refresh_token = jwt.sign(
-			user.toJSON(),
-			process.env.REFRESH_SECRET_TOKEN,
-			{ expiresIn: process.env.REFRESH_SECRET_TOKEN_EXPIRED_IN }
-		);
+		// const refresh_token = jwt.sign(
+		// 	user.toJSON(),
+		// 	process.env.REFRESH_SECRET_TOKEN,
+		// 	{ expiresIn: process.env.REFRESH_SECRET_TOKEN_EXPIRED_IN }
+		// );
 		
 
-		await TokenService.Create({ refresh_token, access_token });
+		// await TokenService.Create({ refresh_token, access_token });
 		// logger.info(`${req.method} ${req.originalUrl} ${200}`);
-		return res.status(200).json({ message: 'Ok', access_token, refresh_token });
+		// return res.status(200).json({ message: 'Ok', access_token, refresh_token });
 	} catch (error) {
 		return next(new Error(error.message));
 	}
@@ -317,4 +322,5 @@ module.exports = {
 	Login,
 	Logout,
 	GetOrganizationsByUser,
+	Test,
 };

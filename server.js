@@ -11,13 +11,23 @@ app.use(cors);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({}));
 
+// app.get('/', async (req, res) => {
+// 	res.send('NGO Directory App');
+// });
+
 app.get('/', async (req, res) => {
-	res.send('NGO Directory App')
-})
-	
+	res.render('login.ejs', {name: 'Cleo'});
+});
+
+app.set('view-engine', 'ejs')
+
 /** swagger route */
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+/** server check */
+app.get('/', (req, res) => {
+	res.send('NGO Directory Server is alive');
+});
 /*routes*/
 const organization = require('./routes/organization.route');
 const user = require('./routes/user.route');
@@ -29,4 +39,3 @@ app.use(user);
 app.listen({ port: process.env.PORT || 3000 }, () => {
 	console.log('Server running at: ', process.env.PORT || 3000);
 });
-
