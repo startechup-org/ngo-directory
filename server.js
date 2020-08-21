@@ -4,6 +4,7 @@ const { db } = require('./db/index');
 const { cors } = require('./utils/middleware');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./configuration/swagger');
+const passport = require('passport')
 
 const app = express();
 db();
@@ -14,6 +15,13 @@ app.use(bodyParser.json({}));
 app.get('/', async (req, res) => {
 	res.send('NGO Directory App')
 })
+
+app.get('/fail', async (req, res) => {
+	res.send('Unauthorized Google Auth')
+})
+
+app.use(passport.initialize());
+app.use(passport.session());
 	
 /** swagger route */
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

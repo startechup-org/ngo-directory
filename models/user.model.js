@@ -3,16 +3,31 @@ const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema(
 	{
+		userType: {
+			type: String,
+			enum: ['user', 'ngo_admin', 'super_admin'],
+			default: 'user',
+		},
+		method: {
+			type: String,
+			enum: ['local', 'google', 'facebook'],
+			required: true
+		},
 		username: String,
 		name: String,
 		email: String,
 		password: String,
 		language: String,
 		country: String,
-		userType: {
-			type: String,
-			enum: ['user', 'ngo_admin', 'super_admin'],
-			default: 'user',
+		google: {
+			id: {
+				type: String
+			}, 
+		},
+		facebook: {
+			id: {
+				type: String
+			}, 
 		},
 		organizations: [
 			{ type: mongoose.Schema.Types.ObjectId, ref: 'organization' },
@@ -43,19 +58,4 @@ UserSchema.pre('findOneAndUpdate', async function () {
 });
 
 const User = mongoose.model('user', UserSchema, 'user');
-
 module.exports = User;
-
-/*
-User
-- username
-- name
-- gender
-- email
-- password
-- language
-- country
-- user type: 1) user 2) NGO admin 3) super admin
-
-relation: user can have many organizations
-*/

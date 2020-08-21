@@ -2,13 +2,12 @@
 const express = require('express');
 const router = express.Router();
 const { isAuthenticated } = require('../utils/middleware');
-
 const passport = require('passport')
-const passportConfig = require('../passport-config')
+require('../passport-config') //not putting in a variable so that we can quicky use it
+const passportLogin = passport.authenticate('local', {session: false})
 
 const UserController = require('../controllers/user.controller');
-router.post('/user/login', passport.authenticate('local', {session: false}), UserController.Login);
-// router.post('/user/login', UserController.Login);
+router.post('/user/login', passportLogin, UserController.Login);
 router.post('/user/logout', UserController.Logout);
 router.post('/user', UserController.Register);
 router.get(
@@ -16,7 +15,14 @@ router.get(
 	UserController.GetAccessTokenViaRefreshToken
 );
 
-
+//GOOGLE AUTH
+router.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/fail' }),
+  function(req, res) {
+    return res.status(200).json({ message: 'Ok', access_token:  req._passport.session.user});
+  });
 
 router.use(isAuthenticated);
 router.get('/users', UserController.GetAllUsersList);

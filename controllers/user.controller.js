@@ -2,7 +2,6 @@
 /* eslint-disable camelcase */
 const Joi = require('@hapi/joi');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const UserService = require('../services/user.service');
 const TokenService = require('../services/token.service');
 
@@ -58,7 +57,7 @@ const GetUserById = async (req, res, next) => {
 		const user = await UserService.FindOne({
 			_id: user_id,
 		});
-		console.log('user: ', user);
+	
 		if (!user) {
 			return res.status(404).json({
 				message: 'User Not Found',
@@ -97,6 +96,7 @@ const Register = async (req, res, next) => {
 		}
 
 		await UserService.Create({
+			method: "local",
 			username,
 			name,
 			email,
@@ -133,7 +133,7 @@ const UpdateUser = async (req, res, next) => {
 		const user = await UserService.FindOne({
 			_id: user_id,
 		});
-		console.log('user: ', user);
+	
 		if (!user) {
 			return res.status(404).json({
 				message: 'User Not Found',
@@ -170,7 +170,7 @@ const DeleteUser = async (req, res, next) => {
 		const user = await UserService.FindOne({
 			_id: user_id,
 		});
-		console.log('user: ', user);
+	
 		if (!user) {
 			return res.status(404).json({
 				message: 'User Not Found',
@@ -190,39 +190,8 @@ const DeleteUser = async (req, res, next) => {
 
 const Login = async (req, res, next) => {
 	try {
-		const { email, password } = req.body;
-
-		// try {
-		// 	const schema = Joi.object({
-		// 		email: Joi.string().email().required(),
-		// 		password: Joi.string().required(),
-		// 	});
-		// 	const input = {
-		// 		email,
-		// 		password,
-		// 	};
-		// 	await schema.validateAsync(input);
-		// } catch (error) {
-		// 	return res.status(400).json({
-		// 		message: 'Bad user input: ' + error.message,
-		// 	});
-		// 	//return next(new ExtendedError('BAD_USER_INPUT', 400, error.message))
-		// }
-
-		const user = await UserService.FindOne({ email });
-		// if (!user) {
-		// 	return res.status(400).json({
-		// 		message: 'Invalid email/password',
-		// 	});
-		// }
-
-		// const valid =
-		// 	user.password && (await bcrypt.compare(password, user.password));
-
-		// if (!valid)
-		// 	return res.status(400).json({
-		// 		message: 'Invalid email/password',
-		// 	});
+		const user = req.user
+		console.log('req.user: ', req.user)
 
 		const access_token = jwt.sign(user.toJSON(), process.env.SECRET_TOKEN, {
 			expiresIn: '24h',
@@ -233,15 +202,13 @@ const Login = async (req, res, next) => {
 			process.env.REFRESH_SECRET_TOKEN,
 			{ expiresIn: process.env.REFRESH_SECRET_TOKEN_EXPIRED_IN }
 		);
-		
-
 		await TokenService.Create({ refresh_token, access_token });
-		// logger.info(`${req.method} ${req.originalUrl} ${200}`);
 		return res.status(200).json({ message: 'Ok', access_token, refresh_token });
 	} catch (error) {
 		return next(new Error(error.message));
 	}
 };
+
 
 const Logout = async (req, res, next) => {
 	try {
@@ -254,7 +221,6 @@ const Logout = async (req, res, next) => {
 
 		await Promise.all([TokenService.DeleteOne({ access_token: token })]);
 
-		// logger.info(`${req.method} ${req.originalUrl} ${200}`);
 		return res.status(200).json({ message: 'Ok' });
 	} catch (error) {
 		return next(new Error(error.message));
@@ -296,7 +262,6 @@ const GetAccessTokenViaRefreshToken = async (req, res, next) => {
 				expiresIn: process.env.SECRET_TOKEN_EXPIRED_IN,
 			});
 
-			logger.info(`${req.method} ${req.originalUrl} ${200}`);
 			return res.status(200).json({ message: 'Ok', access_token });
 		} catch (error) {
 			return next(new ExtendedError('InvalidToken', 400, error.message));
