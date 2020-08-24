@@ -35,12 +35,14 @@ app.get('/', (req, res) => {
 	res.send('NGO Directory Server is alive');
 });
 /*routes*/
-const organization = require('./routes/organization.route');
 const user = require('./routes/user.route');
+const organization = require('./routes/organization.route');
+
 
 /*routes*/
-app.use(organization);
 app.use(user);
+app.use(organization);
+
 
 app.listen({ port: process.env.PORT || 3000 }, () => {
 	console.log('Server running at: ', process.env.PORT || 3000);
