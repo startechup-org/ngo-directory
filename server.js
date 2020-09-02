@@ -12,10 +12,6 @@ app.use(cors);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({}));
 
-// app.get('/', async (req, res) => {
-// 	res.send('NGO Directory App');
-// });
-
 app.get('/', async (req, res) => {
 	res.send('NGO Directory App')
 })
