@@ -8,6 +8,7 @@ router.get('/organizations', OrganizationController.GetOrganizationList);
 router.post('/organization', OrganizationController.AddOrganization);
 router.use(isAuthenticated);
 
+
 router.get(
 	'/organization/:organization_id',
 	OrganizationController.GetOrganizationById
