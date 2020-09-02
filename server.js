@@ -34,11 +34,11 @@ app.get('/', (req, res) => {
 const user = require('./routes/user.route');
 const organization = require('./routes/organization.route');
 
-
 /*routes*/
-app.use(user);
-app.use(organization);
 
+app.use(user);
+
+app.use(organization);
 
 app.listen({ port: process.env.PORT || 3000 }, () => {
 	console.log('Server running at: ', process.env.PORT || 3000);
