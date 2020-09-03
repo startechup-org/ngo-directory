@@ -131,11 +131,32 @@ Please refer to the <a href="http://34.87.81.98:3000/api-docs/"> live swagger UI
 - Organization
 - User (types: user, ngo_admin, super_admin)
 
-## Relationship
-Many to Many
-- a user can be an admin of multiple organizations
-- an organization can have multiple admins
+## Social Media Authentication (Google)
+Setup **Oauth2** Client with **Gmail API** in Google Developers Console
+- Go to the link below and click on **Enable Gmail API**
+```
+https://developers.google.com/gmail/api/quickstart/js
+```
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599096926/gauth1_bvold1.png">
 
+- Create a new project. This may take a while to setup.
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599097153/gauth2_xgbqcn.png">
+
+- Once everything is done, retrieve the **Client ID** and **Client Secret**. This will be used in setting up Google Strategy with Passport.
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599097444/gauth3_qxo29d.png">
+
+- Another way to retrieve the **Client ID** and **Client Secret** is through **Credentials** in google developers console. Then, select **Oauth Client**
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599097928/gauth-11_y9hevv.png">
+
+- You can also retrieve the **Client ID** and **Client Secret** here
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599098121/gauth5_a2upuf.png">
+
+- Add **Authorized redirect URIs** which is specified in your backend routes. In our case: 
+```
+http://localhost:3000/google/
+http://localhost:3000/google/callback
+```
+<img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599098177/gauth4_re2shd.png">
 
 ## License
 MIT © [Startechup, Inc.]()
