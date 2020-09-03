@@ -214,7 +214,6 @@ const Login = async (req, res, next) => {
 	}
 };
 
-
 const Logout = async (req, res, next) => {
 	try {
 		const authorization =

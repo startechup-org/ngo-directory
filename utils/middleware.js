@@ -35,7 +35,6 @@ const isAuthenticated = async (req, res, next) => {
 	return res.status(500).json({
 		message: 'Auth token is not supplied',
 	});
-
 };
 
 module.exports = {

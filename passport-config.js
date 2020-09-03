@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy({
             const access_token = jwt.sign(existingUser.toJSON(), process.env.SECRET_TOKEN, {
                 expiresIn: '24h',
             });
-            console.log('access token: ', access_token)
+            console.log('access token existing user: ', access_token)
             return done(null, access_token)
         } else {
             //if no existing account, create a new account
@@ -40,7 +40,7 @@ passport.use(new GoogleStrategy({
             const access_token = jwt.sign(newUser.toJSON(), process.env.SECRET_TOKEN, {
                 expiresIn: '24h',
             });
-            console.log('access token: ', access_token)
+            console.log('access token new user: ', access_token)
         }
 
         return done(null, access_token);
