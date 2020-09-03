@@ -97,7 +97,7 @@ This app uses MongoDB Atlas, which is a fully-managed cloud database. In case of
 - In this part, we should connect to our Atlas Database, navigate again to your cluster dashboard and click on **Connect**
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032007/atlas4_lusvuj.png">
 
-- In **Connect to Cluster**, select **Allow Access from Anywhere**
+- In **Connect to Cluster**, select **Allow Access from Anywhere**. Now, this is not the best practice as allowing access from anywhere would pose security concerns on your database connection but for demonstration and simplicity purposes, we will use this approach. But definitely whitelist your IP. You can refer to this link here for the guided steps in the documentation: https://docs.atlas.mongodb.com/tutorial/whitelist-connection-ip-address/ 
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1596032976/atlas8_gfs0vk.png">
 
 - Add a whitelist api and create the database user
@@ -145,7 +145,7 @@ https://developers.google.com/gmail/api/quickstart/js
 - Once everything is done, retrieve the **Client ID** and **Client Secret**. This will be used in setting up Google Strategy with Passport.
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599097444/gauth3_qxo29d.png">
 
-- Another way to retrieve the **Client ID** and **Client Secret** is through **Credentials** in google developers console. Then, select **Oauth Client**
+- Another way to retrieve the **Client ID** and **Client Secret** is through **Credentials** in Google Developers Console. Then, select **Oauth Client**
 <img src="https://res.cloudinary.com/dymspxfgk/image/upload/v1599097928/gauth-11_y9hevv.png">
 
 - You can also retrieve the **Client ID** and **Client Secret** here
