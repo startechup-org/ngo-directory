@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema(
 		method: {
 			type: String,
 			enum: ['local', 'google', 'facebook'],
+			default: 'local',
 			required: true
 		},
 		username: String,
