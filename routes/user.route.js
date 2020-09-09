@@ -15,6 +15,11 @@ router.get(
 	UserController.GetAccessTokenViaRefreshToken
 );
 
+router.get(
+	'/user/:user_id/organizations',
+	UserController.GetOrganizationsByUser
+);
+
 //GOOGLE AUTH
 router.get(
 	'/google',
@@ -47,16 +52,13 @@ router.get(
 	}
 );
 
-router.use(isAuthenticated);
+// router.use(isAuthenticated);
 router.get('/users', UserController.GetAllUsersList);
 router.get('/users/:user_type', UserController.GetUsersByType);
 router.get('/user/:user_id', UserController.GetUserById);
 
 router.put('/user/:user_id', UserController.UpdateUser);
 router.delete('/user/:user_id', UserController.DeleteUser);
-router.get(
-	'/user/:user_id/organizations',
-	UserController.GetOrganizationsByUser
-);
+
 
 module.exports = router;

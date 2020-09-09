@@ -37,7 +37,6 @@ const organization = require('./routes/organization.route');
 /*routes*/
 
 app.use(user);
-
 app.use(organization);
 
 app.listen({ port: process.env.PORT || 3000 }, () => {
