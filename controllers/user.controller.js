@@ -193,7 +193,6 @@ const Test = async (req, res, next) => {
 }
 
 const Login = async (req, res, next) => {
-	console.log('testing')
 	try {
 		const user = req.user
 		console.log('req.user: ', req.user)
@@ -208,7 +207,7 @@ const Login = async (req, res, next) => {
 			{ expiresIn: process.env.REFRESH_SECRET_TOKEN_EXPIRED_IN }
 		);
 		await TokenService.Create({ refresh_token, access_token });
-		return res.status(200).json({ message: 'Ok', access_token, refresh_token });
+		return res.status(200).json({ message: 'Ok', access_token, refresh_token, user });
 	} catch (error) {
 		return next(new Error(error.message));
 	}
