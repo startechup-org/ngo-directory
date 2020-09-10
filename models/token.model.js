@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const TokenSchema = new mongoose.Schema(
 	{
-		refresh_token: String,
+		// refresh_token: String,
 		access_token: String,
 		createdAt: {
 			type: Date,

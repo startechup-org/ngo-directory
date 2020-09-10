@@ -201,13 +201,13 @@ const Login = async (req, res, next) => {
 			expiresIn: '24h',
 		});
 		
-		const refresh_token = jwt.sign(
-			user.toJSON(),
-			process.env.REFRESH_SECRET_TOKEN,
-			{ expiresIn: process.env.REFRESH_SECRET_TOKEN_EXPIRED_IN }
-		);
-		await TokenService.Create({ refresh_token, access_token });
-		return res.status(200).json({ message: 'Ok', access_token, refresh_token, user });
+		// const refresh_token = jwt.sign(
+		// 	user.toJSON(),
+		// 	process.env.REFRESH_SECRET_TOKEN,
+		// 	{ expiresIn: process.env.REFRESH_SECRET_TOKEN_EXPIRED_IN }
+		// );
+		await TokenService.Create({ access_token });
+		return res.status(200).json({ message: 'Ok', access_token, user });
 	} catch (error) {
 		return next(new Error(error.message));
 	}
@@ -230,55 +230,55 @@ const Logout = async (req, res, next) => {
 	}
 };
 
-const GetAccessTokenViaRefreshToken = async (req, res, next) => {
-	try {
-		const { refresh_token } = req.params;
+// const GetAccessTokenViaRefreshToken = async (req, res, next) => {
+// 	try {
+// 		const { refresh_token } = req.params;
 
-		try {
-			const schema = Joi.object({
-				refresh_token: Joi.string(),
-			});
-			const input = {
-				refresh_token,
-			};
-			await schema.validateAsync(input);
-		} catch (error) {
-			return next(new ExtendedError('BAD_USER_INPUT', 400, error.message));
-		}
+// 		try {
+// 			const schema = Joi.object({
+// 				refresh_token: Joi.string(),
+// 			});
+// 			const input = {
+// 				refresh_token,
+// 			};
+// 			await schema.validateAsync(input);
+// 		} catch (error) {
+// 			return next(new ExtendedError('BAD_USER_INPUT', 400, error.message));
+// 		}
 
-		const token = await TokenService.FindOne({ refresh_token });
+// 		const token = await TokenService.FindOne({ refresh_token });
 
-		if (!token) {
-			return next(
-				new ExtendedError(
-					'RefreshTokenNotFound',
-					404,
-					'refresh_token not found'
-				)
-			);
-		}
+// 		if (!token) {
+// 			return next(
+// 				new ExtendedError(
+// 					'RefreshTokenNotFound',
+// 					404,
+// 					'refresh_token not found'
+// 				)
+// 			);
+// 		}
 
-		try {
-			const decoded = await jwtVerifyRefreshToken(token.refresh_token);
-			const { iat, exp, ...user } = decoded;
-			const access_token = jwt.sign(user, process.env.SECRET_TOKEN, {
-				expiresIn: process.env.SECRET_TOKEN_EXPIRED_IN,
-			});
+// 		try {
+// 			const decoded = await jwtVerifyRefreshToken(token.refresh_token);
+// 			const { iat, exp, ...user } = decoded;
+// 			const access_token = jwt.sign(user, process.env.SECRET_TOKEN, {
+// 				expiresIn: process.env.SECRET_TOKEN_EXPIRED_IN,
+// 			});
 
-			return res.status(200).json({ message: 'Ok', access_token });
-		} catch (error) {
-			return next(new ExtendedError('InvalidToken', 400, error.message));
-		}
-	} catch (error) {
-		return next(new Error(error.message));
-	}
-};
+// 			return res.status(200).json({ message: 'Ok', access_token });
+// 		} catch (error) {
+// 			return next(new ExtendedError('InvalidToken', 400, error.message));
+// 		}
+// 	} catch (error) {
+// 		return next(new Error(error.message));
+// 	}
+// };
 
 module.exports = {
 	GetAllUsersList,
 	GetUsersByType,
 	GetUserById,
-	GetAccessTokenViaRefreshToken,
+	// GetAccessTokenViaRefreshToken,
 	Register,
 	UpdateUser,
 	DeleteUser,

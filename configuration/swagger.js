@@ -338,31 +338,31 @@ const api = {
 			],
 		},
 	},
-	'/user/token/{refresh_token}': {
-		get: {
-			tags: ['api'],
-			operationId: 'GetAccessTokenViaRefreshToken',
-			summary: 'get access token using refresh token',
-			parameters: [
-				{
-					name: 'refresh_token',
-					in: 'path',
-					required: true,
-					schema: {
-						type: 'string',
-					},
-				},
-			],
-			responses: {
-				200: {
-					description: 'Ok',
-				},
-				400: {
-					description: 'Invalid token',
-				},
-			},
-		},
-	},
+	// '/user/token/{refresh_token}': {
+	// 	get: {
+	// 		tags: ['api'],
+	// 		operationId: 'GetAccessTokenViaRefreshToken',
+	// 		summary: 'get access token using refresh token',
+	// 		parameters: [
+	// 			{
+	// 				name: 'refresh_token',
+	// 				in: 'path',
+	// 				required: true,
+	// 				schema: {
+	// 					type: 'string',
+	// 				},
+	// 			},
+	// 		],
+	// 		responses: {
+	// 			200: {
+	// 				description: 'Ok',
+	// 			},
+	// 			400: {
+	// 				description: 'Invalid token',
+	// 			},
+	// 		},
+	// 	},
+	// },
 	'/organizations': {
 		get: {
 			tags: ['api'],

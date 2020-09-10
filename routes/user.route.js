@@ -10,10 +10,10 @@ const passportLogin = passport.authenticate('local', { session: false });
 router.post('/user/login', passportLogin, UserController.Login);
 router.post('/user/logout', UserController.Logout);
 router.post('/user', UserController.Register);
-router.get(
-	'/user/token/:refresh_token',
-	UserController.GetAccessTokenViaRefreshToken
-);
+// router.get(
+// 	'/user/token/:refresh_token',
+// 	UserController.GetAccessTokenViaRefreshToken
+// );
 
 router.get(
 	'/user/:user_id/organizations',

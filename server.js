@@ -35,7 +35,6 @@ const user = require('./routes/user.route');
 const organization = require('./routes/organization.route');
 
 /*routes*/
-
 app.use(user);
 app.use(organization);
 
