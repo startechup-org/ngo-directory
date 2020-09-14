@@ -124,7 +124,7 @@ passport.use(
 		async (email, password, done) => {
 			try {
 				//Find the user given the email
-				const user = await User.findOne({ email });
+				const user = await User.findOne({ email }).select("+password");
 				//If not, handle it
 				if (!user) {
 					return done(null, false);

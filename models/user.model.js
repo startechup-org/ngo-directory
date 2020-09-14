@@ -17,11 +17,11 @@ const UserSchema = new mongoose.Schema(
 		username: String,
 		name: String,
 		email: String,
-		password: String,
-		// password: {
-		// 	type: String,
-		// 	select: false
-		// },
+		// password: String,
+		password: {
+			type: String,
+			select: false
+		},
 		language: String,
 		country: String,
 		google: {
@@ -48,6 +48,7 @@ const UserSchema = new mongoose.Schema(
 	},
 	{
 		versionKey: false,
+		toJSON: { transform(doc, ret) { delete ret.password; return ret}}
 	}
 );
 
