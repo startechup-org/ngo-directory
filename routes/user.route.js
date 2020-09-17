@@ -53,7 +53,7 @@ router.get(
 );
 
 // router.use(isAuthenticated);
-router.get('/users', UserController.GetAllUsersList);
+router.get('/users', isAuthenticated, UserController.GetAllUsersList);
 router.get('/users/:user_type', UserController.GetUsersByType);
 router.get('/user/:user_id', UserController.GetUserById);
 

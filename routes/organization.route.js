@@ -4,7 +4,7 @@ const router = express.Router();
 const { isAuthenticated } = require('../utils/middleware');
 
 const OrganizationController = require('../controllers/organization.controller');
-router.get('/organizations', OrganizationController.GetOrganizationList);
+router.get('/organizations', isAuthenticated, OrganizationController.GetOrganizationList);
 router.post('/organization', OrganizationController.AddOrganization);
 // router.use(isAuthenticated);
 
@@ -23,7 +23,7 @@ router.delete(
 	OrganizationController.DeleteOrganization
 );
 router.get(
-	'/organization/:organization_id/admins',
+	'/organization/:organization_id/admins', isAuthenticated,
 	OrganizationController.GetAdminsByOrganization
 );
 
