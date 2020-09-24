@@ -119,16 +119,16 @@ const Register = async (req, res, next) => {
 const UpdateUser = async (req, res, next) => {
 	try {
 		const { user_id } = req.params;
-		const {
-			username,
-			name,
-			email,
-			password,
-			language,
-			country,
-			userType,
-			organizations,
-		} = req.body;
+		// const {
+		// 	username,
+		// 	name,
+		// 	email,
+		// 	password,
+		// 	language,
+		// 	country,
+		// 	userType,
+		// 	organizations,
+		// } = req.body;
 
 		const user = await UserService.FindOne({
 			_id: user_id,
@@ -142,16 +142,7 @@ const UpdateUser = async (req, res, next) => {
 
 		await UserService.FindOneAndUpdate(
 			{ _id: user_id },
-			{
-				username,
-				name,
-				email,
-				password,
-				language,
-				country,
-				userType,
-				organizations,
-			}
+			req.body
 		);
 
 		return res.status(200).json({
