@@ -73,7 +73,7 @@ const AddOrganization = async (req, res, next) => {
 			});
 		}
 
-		await OrganizationService.Create({
+		const new_org = await OrganizationService.Create({
 			org_name,
 			org_description,
 			org_country,
@@ -84,7 +84,7 @@ const AddOrganization = async (req, res, next) => {
 
 		return res.status(200).json({
 			message: 'Ok',
-			data: 'Organization Inserted',
+			data: new_org,
 		});
 	} catch (error) {
 		return next(new Error(error.message));
