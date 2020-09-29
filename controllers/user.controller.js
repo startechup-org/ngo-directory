@@ -95,7 +95,7 @@ const Register = async (req, res, next) => {
 			});
 		}
 
-		await UserService.Create({
+		const new_user = await UserService.Create({
 			method: "local",
 			username,
 			name,
@@ -107,9 +107,16 @@ const Register = async (req, res, next) => {
 			organizations,
 		});
 
+		const access_token = jwt.sign(new_user.toJSON(), process.env.SECRET_TOKEN, {
+			expiresIn: '24h',
+		});
+
+		await TokenService.Create({ access_token });
+
 		return res.status(200).json({
 			message: 'Ok',
-			data: 'User Inserted',
+			user: new_user,
+			access_token
 		});
 	} catch (error) {
 		return next(new Error(error.message));
